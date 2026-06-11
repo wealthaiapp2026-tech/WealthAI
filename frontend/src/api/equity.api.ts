@@ -1,4 +1,5 @@
-const BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
+const BASE = `${import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1'}/market`;
+// const BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
 
 type FetchOptions = RequestInit & { headers?: Record<string, string> };
 
