@@ -8,15 +8,27 @@
 const { Pool } = require('pg');
 const logger   = require('./logger');
 
+// const pool: Pool = new Pool({
+//   host:                    process.env.DB_HOST     || 'localhost',
+//   port:                    parseInt(process.env.DB_PORT) || 5432,
+//   database:                process.env.DB_NAME     || 'wealthai_db',
+//   user:                    process.env.DB_USER     || 'postgres',
+//   password:                process.env.DB_PASSWORD || '',
+//   max:                     parseInt(process.env.DB_POOL_MAX) || 10,
+//   idleTimeoutMillis:       30000,
+//   connectionTimeoutMillis: 5000,
+// });
+
 const pool: Pool = new Pool({
-  host:                    process.env.DB_HOST     || 'localhost',
-  port:                    parseInt(process.env.DB_PORT) || 5432,
-  database:                process.env.DB_NAME     || 'wealthai_db',
-  user:                    process.env.DB_USER     || 'postgres',
-  password:                process.env.DB_PASSWORD || '',
-  max:                     parseInt(process.env.DB_POOL_MAX) || 10,
+  host:     process.env.DB_HOST     || 'localhost',
+  port:     parseInt(process.env.DB_PORT) || 5432,
+  database: process.env.DB_NAME     || 'wealthai_db',
+  user:     process.env.DB_USER     || 'postgres',
+  password: process.env.DB_PASSWORD || '',
+  max:      parseInt(process.env.DB_POOL_MAX) || 10,
   idleTimeoutMillis:       30000,
   connectionTimeoutMillis: 5000,
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false, // 👈 add this
 });
 
 // Test connection on startup
