@@ -1,4 +1,4 @@
-const BASE = '/api/india-market';
+const BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
 
 type FetchOptions = RequestInit & { headers?: Record<string, string> };
 
