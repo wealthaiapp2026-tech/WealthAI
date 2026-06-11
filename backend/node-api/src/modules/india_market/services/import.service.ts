@@ -60,3 +60,4 @@ export const processHoldings = async (file: Express.Multer.File) => {
         totalHoldings: holdings.length,
         holdings
 };
+}
