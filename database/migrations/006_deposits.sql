@@ -47,7 +47,8 @@ CREATE TABLE IF NOT EXISTS deposits.account_holdings (
                             'monthly',
                             'quarterly',
                             'half_yearly',
-                            'yearly'
+                            'yearly',
+                            'at_maturity'
                         )),
 
     -- For RD specifically
