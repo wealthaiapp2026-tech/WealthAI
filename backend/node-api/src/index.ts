@@ -59,6 +59,16 @@ app.get('/health', (req, res) => {
   });
 });
 
+// just testing for db connection only
+app.get('/db-test', async (req: any, res: any) => {
+  try {
+    const result = await pool.query('SELECT current_database() as db, now() as time');
+    res.json({ success: true, connected: true, data: result.rows[0] });
+  } catch (err: any) {
+    res.json({ success: false, connected: false, error: err.message });
+  }
+});
+
 // ── API Routes  (all prefixed /api/v1) ───────────────────────────
 app.use('/api/v1/auth',      authRoutes);
 app.use('/api/v1/bond',      bondRoutes);
