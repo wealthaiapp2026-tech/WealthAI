@@ -12,6 +12,7 @@ const helmet  = require('helmet');
 const morgan  = require('morgan');
 
 const logger       = require('./shared/logger');
+const pool = require('./shared/dbconnection');
 const errorHandler = require('./shared/middleware/errorHandler');
 const scheduler    = require('./shared/scheduler');
 
@@ -57,6 +58,16 @@ app.get('/health', (req, res) => {
     env:       process.env.NODE_ENV,
     timestamp: new Date(),
   });
+});
+
+// just testing for db connection only
+app.get('/db-test', async (req: any, res: any) => {
+  try {
+    const result = await pool.query('SELECT current_database() as db, now() as time');
+    res.json({ success: true, connected: true, data: result.rows[0] });
+  } catch (err: any) {
+    res.json({ success: false, connected: false, error: err.message });
+  }
 });
 
 // ── API Routes  (all prefixed /api/v1) ───────────────────────────
