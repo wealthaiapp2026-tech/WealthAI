@@ -12,6 +12,7 @@ const helmet  = require('helmet');
 const morgan  = require('morgan');
 
 const logger       = require('./shared/logger');
+const pool = require('./shared/dbconnection');
 const errorHandler = require('./shared/middleware/errorHandler');
 const scheduler    = require('./shared/scheduler');
 
