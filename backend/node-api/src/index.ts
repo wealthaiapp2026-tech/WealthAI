@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────
-//  WealthAI — Node.js API Entry Point
+//  WealthAI — Node.js API Entry Point (CommonJS Aligned)
 //  Start : node index.js
 //  Dev   : npm run dev  (nodemon)
 // ─────────────────────────────────────────────────────────────────
@@ -12,20 +12,23 @@ const helmet  = require('helmet');
 const morgan  = require('morgan');
 
 const logger       = require('./shared/logger');
-const pool = require('./shared/dbconnection');
+const pool         = require('./shared/dbconnection');
 const errorHandler = require('./shared/middleware/errorHandler');
 const scheduler    = require('./shared/scheduler');
 
 // ── Route imports ─────────────────────────────────────────────────
-const authRoutes     = require('./modules/auth/routes/auth.routes');
-const bondRoutes     = require('./modules/bond/routes/bond.routes');
-const depositsRoutes = require('./modules/deposits/routes/deposits.routes');
-const mfRoutes       = require('./modules/mutual_fund/routes/mf.routes');
-const algoRoutes     = require('./modules/algo_engine/routes/algo.routes');
-const marketRoutes   = require('./modules/india_market/routes/market.routes');
-const portfolioRoutes= require('./modules/portfolio/routes/portfolio.routes');
-import mfImportRoutes from './modules/mutual_fund/routes/import.routes'; //this i am adding
-import marketImportRoutes from './modules/india_market/routes/import.routes'; //this i am adding
+const authRoutes         = require('./modules/auth/routes/auth.routes');
+const bondRoutes         = require('./modules/bond/routes/bond.routes');
+const depositsRoutes     = require('./modules/deposits/routes/deposits.routes');
+const mfRoutes           = require('./modules/mutual_fund/routes/mf.routes');
+const algoRoutes         = require('./modules/algo_engine/routes/algo.routes');
+const marketRoutes       = require('./modules/india_market/routes/market.routes');
+const portfolioRoutes    = require('./modules/portfolio/routes/portfolio.routes');
+
+// Cleaned up to match your core routing structure (Fixes the red lines)
+const mfImportRoutes     = require('./modules/mutual_fund/routes/import.routes');
+const marketImportRoutes = require('./modules/india_market/routes/import.routes');
+
 const app: import('express').Application = express();
 const PORT = process.env.PORT || 3000;
 
@@ -52,7 +55,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // ── Health check ──────────────────────────────────────────────────
-app.get('/health', (req, res) => {
+app.get('/health', (req: any, res: any) => {
   res.json({
     status:    'ok',
     service:   'node-api',
@@ -72,19 +75,20 @@ app.get('/db-test', async (req: any, res: any) => {
 });
 
 // ── API Routes  (all prefixed /api/v1) ───────────────────────────
-app.use('/api/v1/auth',      authRoutes);
-app.use('/api/v1/bond',      bondRoutes);
-app.use('/api/v1/fd',        depositsRoutes);
-app.use('/api/v1/mf',        mfRoutes);
-app.use('/api/v1/algo',      algoRoutes);
-app.use('/api/v1/market',    marketRoutes);
-app.use('/api/v1/portfolio', portfolioRoutes);
-// 2. Register them under your middleware stack further down
-app.use('/api/v1/mf/import', mfImportRoutes);
-app.use('/api/v1/market/import', marketImportRoutes);
+app.use('/api/v1/auth',       authRoutes);
+app.use('/api/v1/bond',       bondRoutes);
+app.use('/api/v1/fd',         depositsRoutes);
+app.use('/api/v1/mf',         mfRoutes);
+app.use('/api/v1/algo',       algoRoutes);
+app.use('/api/v1/market',     marketRoutes);
+app.use('/api/v1/portfolio',  portfolioRoutes);
+
+// Mounted upload / import routes 
+app.use('/api/v1/mf/import',     mfImportRoutes.default || mfImportRoutes);
+app.use('/api/v1/market/import', marketImportRoutes.default || marketImportRoutes);
 
 // ── 404 ───────────────────────────────────────────────────────────
-app.use((req, res) => {
+app.use((req: any, res: any) => {
   res.status(404).json({
     success: false,
     message: `Route not found: ${req.method} ${req.originalUrl}`,
