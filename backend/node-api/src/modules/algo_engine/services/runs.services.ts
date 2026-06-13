@@ -9,7 +9,7 @@ exports.getRunsByDeployment = async (deployment_id, limit = 30) => {
      WHERE deployment_id = $1
      ORDER BY run_date DESC
      LIMIT $2`,
-    [deployment_id, parseInt(limit)]
+    [deployment_id, limit.toString()]
   );
   return rows;
 };

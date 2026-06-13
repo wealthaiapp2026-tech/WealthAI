@@ -3,8 +3,9 @@ import path from 'path';
 import { detectBroker } from '../imports/shared/brokerDetector';
 
 import { parseZerodhaContractNote } from '../imports/brokers/zerodha/contract_note.parser';
-import { parseGrowwContractNote } from '../imports/brokers/groww/contract_note.parser';
-
+// import { parseGrowwContractNote } from '../imports/brokers/groww/contract_note.parser';
+// import { parseGrowwContractNote } from '../imports/brokers/groww/contract_note.parser';
+// import { parseGrowwContractNote } from '../imports/brokers/groww/contract_note.parser';
 import { parseZerodhaHoldings } from '../imports/brokers/zerodha/holdings.parser';
 
 export const processContractNote = async (file: Express.Multer.File) => {
@@ -20,7 +21,7 @@ export const processContractNote = async (file: Express.Multer.File) => {
             break;
 
         case 'groww':
-            trades = await parseGrowwContractNote(file.path);
+            // trades = await parseGrowwContractNote(file.path);
             break;
 
         default:
