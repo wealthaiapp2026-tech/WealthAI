@@ -1,6 +1,6 @@
 // modules/portfolio/services/portfolio.services.js
 // Aggregates data across all modules for portfolio dashboard
-
+import db from '../../../shared/dbconnection';
 exports.getSummary = async (user_id) => {
   const [deposits, bonds, mf, equity, algo] = await Promise.all([
 

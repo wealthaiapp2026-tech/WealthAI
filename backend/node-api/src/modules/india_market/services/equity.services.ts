@@ -1,4 +1,5 @@
 // modules/india-market/services/equity.services.js
+import db from '../../../shared/dbconnection';
 
 exports.getHoldings = async (user_id) => {
   const { rows } = await db.query(

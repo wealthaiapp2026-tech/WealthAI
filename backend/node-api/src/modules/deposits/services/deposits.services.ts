@@ -1,5 +1,5 @@
 // modules/deposits/services/deposits.services.js
-
+import db from '../../../shared/dbconnection';
 exports.addHolding = async ({ user_id, account_type, account_number, account_name, institution_name, institution_branch, principal_amount, current_value, interest_rate, interest_type, compounding_freq, monthly_instalment, start_date, maturity_date, tenure_months, maturity_amount, maturity_action, nominee_name, nps_tier, nps_scheme }) => {
   const { rows } = await db.query(
     `INSERT INTO deposits.account_holdings

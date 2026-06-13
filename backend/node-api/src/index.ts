@@ -24,7 +24,8 @@ const mfRoutes       = require('./modules/mutual_fund/routes/mf.routes');
 const algoRoutes     = require('./modules/algo_engine/routes/algo.routes');
 const marketRoutes   = require('./modules/india_market/routes/market.routes');
 const portfolioRoutes= require('./modules/portfolio/routes/portfolio.routes');
-
+import mfImportRoutes from './modules/mutual_fund/routes/import.routes'; //this i am adding
+import marketImportRoutes from './modules/india_market/routes/import.routes'; //this i am adding
 const app: import('express').Application = express();
 const PORT = process.env.PORT || 3000;
 
@@ -78,6 +79,9 @@ app.use('/api/v1/mf',        mfRoutes);
 app.use('/api/v1/algo',      algoRoutes);
 app.use('/api/v1/market',    marketRoutes);
 app.use('/api/v1/portfolio', portfolioRoutes);
+// 2. Register them under your middleware stack further down
+app.use('/api/v1/mf/import', mfImportRoutes);
+app.use('/api/v1/market/import', marketImportRoutes);
 
 // ── 404 ───────────────────────────────────────────────────────────
 app.use((req, res) => {
