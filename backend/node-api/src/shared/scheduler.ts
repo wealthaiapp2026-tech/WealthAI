@@ -52,7 +52,7 @@ function init() {
         logger.error(`[Scheduler] Failed: ${job.name} → ${err.message}`);
       }
     });
-    logger.info(`[Scheduler] Registered: ${job.name} (${job.schedule})`);
+    console.info(`[Scheduler] Registered: ${job.name} (${job.schedule})`);
   });
 }
 
