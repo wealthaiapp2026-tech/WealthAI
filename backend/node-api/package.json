@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "WealthAI Node.js REST API — CRUD & Data Serving Layer",
   "main": "dist/index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "build": "tsc --skipLibCheck",
     "start": "node dist/index.js",
