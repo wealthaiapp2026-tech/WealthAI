@@ -92,7 +92,7 @@ app.use(errorHandler);
 
 // ── Start ─────────────────────────────────────────────────────────
 app.listen(PORT, () => {
-  logger.info(`WealthAI API running on port ${PORT} [${process.env.NODE_ENV}]`);
+  console.info(`WealthAI API running on port ${PORT} [${process.env.NODE_ENV}]`);
   scheduler.init();
 });
 
