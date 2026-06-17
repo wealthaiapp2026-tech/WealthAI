@@ -6,7 +6,7 @@
 // ─────────────────────────────────────────────────────────────────
 
 import { Pool, PoolClient } from 'pg';      // ✅ ES import — fixes TS2749 & TS2304
-import logger from './logger';               // ✅ ES import — fixes TS2451 (no re-declaration)
+// import logger from './logger';               // ✅ ES import — fixes TS2451 (no re-declaration)
 
 const pool: Pool = new Pool({
   connectionString: process.env.DATABASE_URL,   // ✅ Neon gives you one URL — use this
