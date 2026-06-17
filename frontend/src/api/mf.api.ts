@@ -1,4 +1,9 @@
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
+// const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
+// Vite automatically replaces these during build time
+const PROD_URL = import.meta.env.VITE_API_PROD;
+const LOCAL_URL = import.meta.env.VITE_API_LOCAL || 'http://localhost:3000/api/v1';
+
+export const BASE_URL = import.meta.env.PROD ? PROD_URL : LOCAL_URL;
 
 const getHeaders = () => {
   const mockToken = 'mock-token';

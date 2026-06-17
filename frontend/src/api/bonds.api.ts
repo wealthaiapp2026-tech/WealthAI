@@ -1,9 +1,12 @@
 // src/api/bonds.api.ts
-
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
-
+// const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
 // --- Existing Fetch (Fixed) ---
 // src/api/bonds.api.ts
+// Vite automatically replaces these during build time
+const PROD_URL = import.meta.env.VITE_API_PROD;
+const LOCAL_URL = import.meta.env.VITE_API_LOCAL || 'http://localhost:3000/api/v1';
+
+export const BASE_URL = import.meta.env.PROD ? PROD_URL : LOCAL_URL;
 
 export const fetchBondsFromAPI = async () => {
   try {
