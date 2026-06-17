@@ -1,3 +1,6 @@
+import { NextFunction } from "express";
+import { AuthRequest } from "../../../shared/types";
+
 // modules/bond/controllers/bond.controller.js
 const services                   = require('../services/bond.services');
 const { sendSuccess, sendError } = require('../../../shared/response');

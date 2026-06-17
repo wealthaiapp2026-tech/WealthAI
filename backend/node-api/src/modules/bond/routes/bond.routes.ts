@@ -1,18 +1,18 @@
 // modules/bond/routes/bond.routes.js
 const express        = require('express');
-const router         = express.Router();
-const ctrl           = require('../controllers/bond.controller');
-const authMiddleware = require('../../../shared/middleware/auth.middleware');
+const bondRouter     = express.Router();
+const bondCtrl       = require('../controllers/bond.controller');
+// const authMiddleware = require('../../../shared/middleware/auth.middleware');
 
-router.use(authMiddleware);
+// bondRouter.use(authMiddleware);
 
-router.get('/master',            ctrl.getBondMaster);
-router.post('/add',              ctrl.addHolding);
-router.get('/all',               ctrl.getAllHoldings);
-router.get('/:id',               ctrl.getHoldingById);
-router.put('/update/:id',        ctrl.updateHolding);
-router.delete('/delete/:id',     ctrl.deleteHolding);
-router.post('/:id/transaction',  ctrl.addTransaction);
-router.get('/:id/transactions',  ctrl.getTransactions);
+bondRouter.get('/master',            bondCtrl.getBondMaster);
+bondRouter.post('/add',              bondCtrl.addHolding);
+bondRouter.get('/all',               bondCtrl.getAllHoldings);
+bondRouter.get('/:id',               bondCtrl.getHoldingById);
+bondRouter.put('/update/:id',        bondCtrl.updateHolding);
+bondRouter.delete('/delete/:id',     bondCtrl.deleteHolding);
+bondRouter.post('/:id/transaction',  bondCtrl.addTransaction);
+bondRouter.get('/:id/transactions',  bondCtrl.getTransactions);
 
-module.exports = router;
+module.exports = bondRouter;
